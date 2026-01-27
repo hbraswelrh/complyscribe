@@ -1,4 +1,3 @@
-
 name: Validate ADRs
 
 on:
@@ -9,19 +8,16 @@ on:
       - 'docs/architecture/decisions'
 
 jobs:
-    validate:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout Code
-            uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-          - name: Set up poetry and install
-            uses: ./.github/actions/setup-poetry
-            with:
-              python-version: '3.11'
-    
-          - name: Run validate adrs
-            run:  trestle author docs validate -tn decisions -hv -tr docs/architecture
-    
+      - name: Set up poetry and install
+        uses: ./.github/actions/setup-poetry
+        with:
+          python-version: '3.11'
 
-
+      - name: Run validate adrs
+        run: trestle author docs validate -tn decisions -hv -tr docs/architecture

@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: 0 0 */30 * *
   release:
-    types: [ published ]
+    types: [published]
   workflow_dispatch:
     inputs:
       tag:
@@ -24,7 +24,7 @@ on:
         required: false
         default: false
 env:
-  IMAGE_NAME: complyscribe 
+  IMAGE_NAME: complyscribe
   IMAGE_REGISTRY: quay.io
 
 concurrency:
@@ -70,7 +70,7 @@ jobs:
         if: ${{ steps.check_event.outputs.event_type == 'workflow_dispatch' }}
         run: |
           {
-            echo "TAG=$INPUT_VERSION" 
+            echo "TAG=$INPUT_VERSION"
             echo "NO_CACHE=$INPUT_NO_CACHE"
             echo "BUILD_GIT_REF=${{ github.ref }}"
             echo "SKIP_TESTS=$INPUT_SKIP_TESTS"
@@ -83,7 +83,7 @@ jobs:
       - name: Set environment information for schedule
         if: ${{ steps.check_event.outputs.event_type == 'schedule' }}
         run: |
-          LATEST_VERSION=$(curl --silent -m 10 --connect-timeout 5 https://api.github.com/repos/complytime/complyscribe/releases/latest | jq -r .tag_name)      
+          LATEST_VERSION=$(curl --silent -m 10 --connect-timeout 5 https://api.github.com/repos/complytime/complyscribe/releases/latest | jq -r .tag_name)
           {
             echo "TAG=$LATEST_VERSION"
             echo "NO_CACHE=true"
@@ -92,7 +92,7 @@ jobs:
           } >> "$GITHUB_ENV"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Check out
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:

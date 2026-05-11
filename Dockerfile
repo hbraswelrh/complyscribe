@@ -17,7 +17,7 @@ LABEL maintainer="Red Hat Product Security" \
 ENV PATH="$VENV_PATH/bin:$PATH"
 
 RUN microdnf update -y \
-    && microdnf install -y python3.9 git \
+    && microdnf install -y python3.11 git \
     && microdnf clean all \
     && rm -rf /var/lib/apt/lists/*
 
@@ -31,24 +31,24 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1
 
 # install poetry globally just for this intermediate build stage
-RUN python3.9 -m pip install --no-cache-dir --upgrade pip setuptools && \
-    python3.9 -m pip install --no-cache-dir "poetry==$POETRY_VERSION"
+RUN python3.11 -m pip install --no-cache-dir --upgrade pip setuptools && \
+    python3.11 -m pip install --no-cache-dir "poetry==$POETRY_VERSION"
 
 WORKDIR "/build"
 COPY . "/build"
 
 # Install runtime deps and install the project in non-editable mode.
 # Ensure pip and setuptools are updated in the virtualenv as well.
-RUN python3.9 -m venv "$VENV_PATH" && \
+RUN python3.11 -m venv "$VENV_PATH" && \
     . "$VENV_PATH"/bin/activate && \
-    python3.9 -m pip install --no-cache-dir --upgrade pip setuptools && \
+    python3.11 -m pip install --no-cache-dir --upgrade pip setuptools && \
     if [ "$INSTALL_PLUGINS" = "true" ]; then \
       poetry install --with plugins --no-root; \
     else \
       poetry install --no-root; \
     fi
 
-RUN  python3.9 -m venv "$VENV_PATH" && \
+RUN  python3.11 -m venv "$VENV_PATH" && \
   . "$VENV_PATH"/bin/activate && \
   poetry build -f wheel -n && \
   pip install --no-cache-dir --no-deps dist/*.whl && \
@@ -69,5 +69,5 @@ RUN chmod +x /auto-sync-entrypoint.sh /rules-transform-entrypoint.sh /create-cd-
 
 USER 1001
 
-ENTRYPOINT ["python3.9", "-m" , "complyscribe"]
+ENTRYPOINT ["python3.11", "-m" , "complyscribe"]
 CMD ["--help"]

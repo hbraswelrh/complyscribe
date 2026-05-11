@@ -57,7 +57,7 @@ Refer to [Style Guide](https://github.com/complytime/community/blob/main/STYLE_G
 
 ### Prerequisites
 
-- [Python](https://www.python.org/downloads/) - v3.9+
+- [Python](https://www.python.org/downloads/) - v3.10+
 - [Poetry](https://python-poetry.org/)
 - [Podman](https://podman.io/docs/installation) (Optional) - For testing locally and end-to-end tests
 

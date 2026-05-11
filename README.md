@@ -1,14 +1,25 @@
 # complyscribe
 
-[![Pre commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+> **ARCHIVED**: This project is archived and no longer maintained. No further
+> releases, bug fixes, or security updates will be provided.
+>
+> ComplyScribe was originally built to transform compliance content between
+> [ComplianceAsCode/content](https://github.com/ComplianceAsCode/content) and
+> [OSCAL](https://github.com/usnistgov/OSCAL) formats, providing OSCAL content
+> consumed by [complyctl](https://github.com/complytime/complyctl). However,
+> complyctl has been redesigned to use
+> [Gemara](https://github.com/gemaraproj/gemara) as its core engine. complyctl
+> can still generate OSCAL as output but no longer requires OSCAL as input,
+> making complyscribe's transformation pipeline obsolete.
+>
+> **Container images** on `quay.io/continuouscompliance/complyscribe` are frozen
+> at the last release (v0.14.0) and will not receive updates.
+
+---
+
 [![License](https://img.shields.io/badge/license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rh-psce_complyscribe&metric=coverage)](https://sonarcloud.io/summary/new_code?id=rh-psce_complyscribe)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rh-psce_complyscribe&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rh-psce_complyscribe)
 
-
-ComplyScribe is a CLI tool that assists users in leveraging [Compliance-Trestle](https://github.com/oscal-compass/compliance-trestle) in CI/CD workflows for [OSCAL](https://github.com/usnistgov/OSCAL) formatted compliance content management.
-
-> WARNING: This project is currently under initial development. APIs may be changed incompatibly from one commit to another.
+ComplyScribe was a CLI tool that assisted users in leveraging [Compliance-Trestle](https://github.com/oscal-compass/compliance-trestle) in CI/CD workflows for [OSCAL](https://github.com/usnistgov/OSCAL) formatted compliance content management.
 
 ## Getting Started
 

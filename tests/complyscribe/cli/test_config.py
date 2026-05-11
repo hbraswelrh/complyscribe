@@ -63,13 +63,13 @@ def test_make_config_raises_no_errors(tmp_init_dir: str) -> None:
 def test_config_write_to_file(
     config_obj: ComplyScribeConfig, tmp_init_dir: str
 ) -> None:
-    """Test config is written to yaml file."""
+    """Test config is written to yaml file and can be loaded back."""
     filepath = pathlib.Path(tmp_init_dir).joinpath("config.yml")
     write_to_file(config_obj, filepath)
-    with open(filepath, "r") as f:
-        yaml_data = yaml.safe_load(f)
 
-    assert yaml_data == config_obj.to_yaml_dict()
+    loaded_config = load_from_file(filepath)
+    assert loaded_config is not None
+    assert loaded_config == config_obj
 
 
 def test_config_load_from_file(

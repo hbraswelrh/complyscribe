@@ -17,7 +17,7 @@ runs:
     - name: Set up poetry and install
       uses: ./.github/actions/setup-poetry
       with:
-        python-version: "3.9"
+        python-version: "3.10"
 
     # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
     - name: Pull the image
